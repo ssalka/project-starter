@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "target": "ES2016",
+    "types": [
+      "express",
+      "node"
+    ]
+  }
+}

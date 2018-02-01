@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "baseUrl": ".",
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "target": "es5"
+  }
+}

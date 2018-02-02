@@ -51,6 +51,8 @@ if (process.env.NODE_ENV === 'production') {
   );
 } else if (process.env.NODE_ENV !== 'test') {
   config.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new ForkTsCheckerWebpackPlugin({
       tsconfig: './config/tsconfig.client.json'
     })

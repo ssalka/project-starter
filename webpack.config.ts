@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as webpack from 'webpack';
 import * as CopyWebpackPlugin from 'copy-webpack-plugin';
 import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import { webpackPort } from 'src/server/config';
 
 const ROOT = path.resolve(__dirname);
 const DIST = path.resolve('./dist');
@@ -50,6 +51,11 @@ if (process.env.NODE_ENV === 'production') {
     })
   );
 } else if (process.env.NODE_ENV !== 'test') {
+  config.entry.unshift(
+    `webpack-dev-server/client?http://localhost:${webpackPort}/`,
+    'webpack/hot/dev-server'
+  );
+
   config.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),

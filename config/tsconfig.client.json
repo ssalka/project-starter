@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig",
+  "compilerOptions": {
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2016",
+      "ScriptHost"
+    ]
+  },
+  "include": [
+    "../src/client",
+    "../src/index.d.ts"
+  ]
+}

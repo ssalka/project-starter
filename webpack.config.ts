@@ -60,7 +60,8 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new ForkTsCheckerWebpackPlugin({
-      tsconfig: './config/tsconfig.client.json'
+      tsconfig: './config/tsconfig.client.json',
+      tslint: './config/tslint.json'
     })
   );
 }

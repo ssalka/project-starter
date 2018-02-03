@@ -14,6 +14,8 @@
   },
   "scripts": {
     "dev": "NODE_PATH=. nodemon --config config/nodemon.json",
+    "lint": "tslint -c config/tslint.json -t stylish",
+    "lint:all": "npm run lint -- 'lib/**/*.ts{,x}' 'src/**/*.ts{,x}' 'test/**/*.ts{,x}'",
     "start": "NODE_PATH=. ts-node -F -P config/tsconfig.server.json index"
   },
   "dependencies": {
@@ -29,6 +31,10 @@
     "fork-ts-checker-webpack-plugin": "^0.3.0",
     "nodemon": "^1.12.5",
     "ts-loader": "^3.2.0",
+    "tslint": "^5.7.0",
+    "tslint-eslint-rules": "^4.1.1",
+    "tslint-loader": "^3.5.3",
+    "tslint-react": "^3.2.0",
     "typescript": "2.6.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "2.9.7"

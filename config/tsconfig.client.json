@@ -1,0 +1,20 @@
+{
+  "extends": "../tsconfig",
+  "compilerOptions": {
+    "jsx": "react",
+    "types": [
+      "react",
+      "react-dom"
+    ],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2016",
+      "ScriptHost"
+    ]
+  },
+  "include": [
+    "../src/client",
+    "../src/index.d.ts"
+  ]
+}

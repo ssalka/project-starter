@@ -15,8 +15,9 @@
   "scripts": {
     "dev": "NODE_PATH=. nodemon --config config/nodemon.json",
     "lint": "tslint -c config/tslint.json -t stylish",
-    "lint:all": "npm run lint -- 'lib/**/*.ts{,x}' 'src/**/*.ts{,x}' 'test/**/*.ts{,x}'",
-    "start": "NODE_PATH=. ts-node -F -P config/tsconfig.server.json index"
+    "lint:all": "npm run lint -- 'src/**/*.ts{,x}' 'test/**/*.ts{,x}'",
+    "start": "NODE_PATH=. ts-node -F -P config/tsconfig.server.json index",
+    "test": "NODE_ENV=test NODE_PATH=. jest -c config/jest.json --noStackTrace"
   },
   "dependencies": {
     "body-parser": "1.15.2",

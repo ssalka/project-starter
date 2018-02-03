@@ -1,0 +1,24 @@
+{
+  "globals": {
+    "__DEV__": true
+  },
+  "rootDir": "../",
+  "moduleFileExtensions": [
+    "js",
+    "ts",
+    "tsx"
+  ],
+  "moduleDirectories": [
+    "node_modules",
+    "."
+  ],
+  "setupTestFrameworkScriptFile": "<rootDir>/test/setup.js",
+  "testPathIgnorePatterns": [
+    "/node_modules/"
+  ],
+  "testRegex": "/test/.*\\.spec\\.tsx?$",
+  "transform": {
+    ".tsx?": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+  },
+  "verbose": true
+}

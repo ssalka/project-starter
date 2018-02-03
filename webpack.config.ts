@@ -11,7 +11,7 @@ const CLIENT = path.resolve('./src/client');
 const config = {
   devtool: 'source-map',
   context: ROOT,
-  entry: ['./src/client/index.ts'],
+  entry: ['./src/client/index.tsx'],
   output: {
     path: DIST,
     filename: 'client.js',
@@ -32,7 +32,7 @@ const config = {
     alias: {
       src: path.resolve('./src')
     },
-    extensions: ['.js', '.ts']
+    extensions: ['.js', '.ts', '.tsx']
   },
   plugins: [
     new webpack.DefinePlugin({

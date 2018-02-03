@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig",
   "compilerOptions": {
+    "jsx": "react",
     "types": [
       "react",
       "react-dom"

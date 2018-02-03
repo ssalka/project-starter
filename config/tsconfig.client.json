@@ -1,6 +1,10 @@
 {
   "extends": "../tsconfig",
   "compilerOptions": {
+    "types": [
+      "react",
+      "react-dom"
+    ],
     "lib": [
       "DOM",
       "DOM.Iterable",

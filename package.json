@@ -20,6 +20,7 @@
     "test": "NODE_ENV=test NODE_PATH=. jest -c config/jest.json --noStackTrace"
   },
   "dependencies": {
+    "bind-decorator": "^1.0.11",
     "body-parser": "1.15.2",
     "cookie-parser": "1.4.3",
     "express": "4.14.0",

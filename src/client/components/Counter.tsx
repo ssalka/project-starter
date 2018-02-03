@@ -1,4 +1,5 @@
 import * as React from 'react';
+import bind from 'bind-decorator';
 
 interface ICounterProps {
   initialValue?: number;
@@ -17,9 +18,15 @@ export default class Counter extends React.Component<ICounterProps, ICounterStat
     value: this.props.initialValue
   };
 
-  decrement = () => this.setState({ value: this.state.value - 1 });
+  @bind decrement() {
+    const { value } = this.state;
+    this.setState({ value: value - 1 });
+  }
 
-  increment = () => this.setState({ value: this.state.value + 1 });
+  @bind increment() {
+    const { value } = this.state;
+    this.setState({ value: value + 1 });
+  }
 
   render() {
     return (

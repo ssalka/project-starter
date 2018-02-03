@@ -1,0 +1,18 @@
+machine:
+  environment:
+    NODE_ENV: test
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+  node:
+    version: 8.9.0
+  npm:
+    version: 5.5.1
+
+dependencies:
+  cache_directories:
+    - /opt/circleci/nodejs/v8.9.0/bin
+    - /opt/circleci/nodejs/v8.9.0/lib/node_modules
+
+test:
+  override:
+    - npm run lint:all
+    - npm test

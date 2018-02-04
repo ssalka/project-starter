@@ -1,4 +1,4 @@
-import * as express from 'express';
+import express from 'express';
 import { indexHtml } from '../config';
 
 const router = express.Router();

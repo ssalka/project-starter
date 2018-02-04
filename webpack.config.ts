@@ -1,7 +1,7 @@
-import * as path from 'path';
-import * as webpack from 'webpack';
-import * as CopyWebpackPlugin from 'copy-webpack-plugin';
-import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import path from 'path';
+import webpack from 'webpack';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { webpackPort } from 'src/server/config';
 
 const ROOT = path.resolve(__dirname);

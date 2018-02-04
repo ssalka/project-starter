@@ -16,23 +16,23 @@
     "dev": "NODE_PATH=. nodemon --config config/nodemon.json",
     "lint": "tslint -c config/tslint.json -t stylish",
     "lint:all": "npm run lint -- 'src/**/*.ts{,x}' 'test/**/*.ts{,x}'",
-    "start": "NODE_PATH=. ts-node -F -P config/tsconfig.server.json index",
+    "start": "NODE_PATH=. ts-node -P config/tsconfig.server.json index",
     "test": "NODE_ENV=test NODE_PATH=. jest -c config/jest.json --noStackTrace"
   },
   "dependencies": {
     "bind-decorator": "^1.0.11",
-    "body-parser": "1.15.2",
-    "cookie-parser": "1.4.3",
-    "express": "4.14.0",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "ts-node": "^3.3.0"
+    "ts-node": "^4.1.0"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.8",
-    "@types/express": "^4.0.37",
+    "@types/express": "^4.11.1",
     "@types/jest": "^22.1.1",
-    "@types/node": "^8.0.31",
+    "@types/node": "^8.5.9",
     "@types/react": "^16.0.28",
     "@types/react-dom": "^16.0.3",
     "copy-webpack-plugin": "^4.3.1",
@@ -40,15 +40,15 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "fork-ts-checker-webpack-plugin": "^0.3.0",
     "jest": "^22.1.4",
-    "nodemon": "^1.12.5",
+    "nodemon": "^1.14.12",
     "ts-jest": "^22.0.3",
-    "ts-loader": "^3.2.0",
+    "ts-loader": "^3.4.0",
     "tslint": "^5.7.0",
     "tslint-eslint-rules": "^4.1.1",
     "tslint-loader": "^3.5.3",
     "tslint-react": "^3.2.0",
-    "typescript": "2.6.2",
+    "typescript": "^2.7.1",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "2.9.7"
+    "webpack-dev-server": "^2.11.1"
   }
 }

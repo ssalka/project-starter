@@ -18,7 +18,7 @@
   ],
   "testRegex": "/test/.*\\.spec\\.tsx?$",
   "transform": {
-    ".tsx?": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    ".tsx?": "ts-jest"
   },
   "verbose": true
 }

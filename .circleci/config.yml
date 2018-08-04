@@ -1,0 +1,29 @@
+version: 2.0
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.9.0
+    environment:
+      NODE_ENV: test
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install Dependencies
+          command: 'npm install'
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Lint Project
+          command: npm run lint:all
+      - run:
+          name: Run Tests
+          command: npm test
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_test_results:
+          path: test-results.xml

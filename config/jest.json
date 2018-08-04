@@ -1,6 +1,9 @@
 {
   "globals": {
-    "__DEV__": true
+    "__DEV__": true,
+    "ts-jest": {
+      "skipBabel": true
+    }
   },
   "rootDir": "../",
   "moduleFileExtensions": [
@@ -17,6 +20,7 @@
     "/node_modules/"
   ],
   "testRegex": "/test/.*\\.spec\\.tsx?$",
+  "testURL": "http://localhost/",
   "transform": {
     ".tsx?": "ts-jest"
   },

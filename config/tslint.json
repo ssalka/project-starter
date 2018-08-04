@@ -30,7 +30,6 @@
     "no-duplicate-case": true,
     "no-sparse-arrays": true,
     "no-unused-expression": true,
-    "no-unused-variable": true,
     "object-curly-spacing": [true, "always"],
     "object-literal-sort-keys": false,
     "object-literal-key-quotes": [true, "as-needed"],

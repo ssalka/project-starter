@@ -7,23 +7,38 @@ jobs:
       NODE_ENV: test
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Install Dependencies
-          command: 'npm install'
+          name: Generate .npmrc
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+      - run:
+          name: Add dependency bin to PATH
+          command: export PATH="$PATH:$CIRCLE_WORKING_DIRECTORY/node_modules/.bin"
+      - restore_cache:
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+            - yarn-packages-
+      - run:
+          name: Install dependencies
+          command: yarn --frozen-lockfile
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ./node_modules
+            - ~/.cache/yarn
       - run:
           name: Lint Project
-          command: npm run lint:all
+          command: yarn lint:all
       - run:
           name: Run Tests
-          command: npm test
+          command: yarn test
       - store_artifacts:
           path: test-results.xml
           prefix: tests
       - store_test_results:
           path: test-results.xml
+
+workflows:
+  version: 2
+  build_test_release:
+    jobs:
+      - build_test_release:
+          context: semantic-release

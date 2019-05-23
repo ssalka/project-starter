@@ -7,14 +7,14 @@ describe('Counter class', () => {
 
   describe('#constructor', () => {
     it(`sets initial state value to ${initialValue} by default`, () => {
-      const counter = shallow(<Counter />);
+      const counter = shallow<Counter>(<Counter />);
 
       expect(counter.state()).toEqual({ value: initialValue });
     });
 
     it('sets initial state value to value of `initialValue` prop, if provided', () => {
       const newInitialValue = Math.random();
-      const counter = shallow(<Counter initialValue={newInitialValue} />);
+      const counter = shallow<Counter>(<Counter initialValue={newInitialValue} />);
 
       expect(counter.state()).toEqual({ value: newInitialValue });
     });
@@ -22,7 +22,7 @@ describe('Counter class', () => {
 
   describe('#decrement', () => {
     it('is called when the first button is clicked', () => {
-      const counter = mount(<Counter />);
+      const counter = mount<Counter>(<Counter />);
       const instance = counter.instance();
       const decrementSpy = jest.spyOn(instance, 'decrement');
 
@@ -33,7 +33,7 @@ describe('Counter class', () => {
     });
 
     it('lowers the counter value by 1', () => {
-      const counter = shallow(<Counter />);
+      const counter = shallow<Counter>(<Counter />);
 
       counter.instance().decrement();
 
@@ -43,7 +43,7 @@ describe('Counter class', () => {
 
   describe('#increment', () => {
     it('is called when the second button is clicked', () => {
-      const counter = mount(<Counter />);
+      const counter = mount<Counter>(<Counter />);
       const instance = counter.instance();
       const incrementSpy = jest.spyOn(instance, 'increment');
 
@@ -54,7 +54,7 @@ describe('Counter class', () => {
     });
 
     it('raises the counter value by 1', () => {
-      const counter = shallow(<Counter />);
+      const counter = shallow<Counter>(<Counter />);
 
       counter.instance().increment();
 

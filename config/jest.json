@@ -1,8 +1,9 @@
 {
+  "preset": "ts-jest",
   "globals": {
     "__DEV__": true,
     "ts-jest": {
-      "skipBabel": true
+      "tsConfig": "./config/tsconfig.client.json"
     }
   },
   "rootDir": "../",
@@ -15,7 +16,7 @@
     "node_modules",
     "."
   ],
-  "setupTestFrameworkScriptFile": "<rootDir>/test/setup.js",
+  "setupFilesAfterEnv": ["<rootDir>/test/setup.js"],
   "testPathIgnorePatterns": [
     "/node_modules/"
   ],

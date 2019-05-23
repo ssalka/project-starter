@@ -9,6 +9,7 @@ const DIST = path.resolve('./dist');
 const CLIENT = path.resolve('./src/client');
 
 const config = {
+  mode: 'development',
   devtool: 'source-map',
   context: ROOT,
   entry: ['./src/client/index.tsx'],

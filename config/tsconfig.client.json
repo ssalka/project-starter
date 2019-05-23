@@ -3,10 +3,6 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "jsx": "react",
-    "types": [
-      "react",
-      "react-dom"
-    ],
     "lib": [
       "DOM",
       "DOM.Iterable",

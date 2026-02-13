@@ -117,18 +117,19 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Deploy
-      uses: ./.github/actions/deploy
-      with:
-        environment: ${{ env.ENV }}
-        commit_sha: ${{ env.COMMIT_SHA }}
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        github_render_token: ${{ secrets.RENDER_GITHUB_ACCESS_TOKEN }}
-        render_api_key_server: ${{ secrets.RENDER_API_KEY_SERVER }}
-        render_owner_id: ${{ secrets.RENDER_OWNER_ID }}
-        mongo_connection_str: ${{ secrets.MONGO_CONNECTION_STR }}
-        aws_access_key_id: ${{ env.AWS_ACCESS_KEY_ID }}
-        aws_secret_access_key: ${{ env.AWS_SECRET_ACCESS_KEY }}
-        auth_secret: ${{ secrets.AUTH_SECRET }}
-        auth_github_id: ${{ secrets.AUTH_GITHUB_ID }}
-        auth_github_secret: ${{ secrets.AUTH_GITHUB_SECRET }}
+    # TODO For each new project, configure deployment
+    # - name: Deploy
+    #   uses: ./.github/actions/deploy
+    #   with:
+    #     environment: ${{ env.ENV }}
+    #     commit_sha: ${{ env.COMMIT_SHA }}
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     github_render_token: ${{ secrets.RENDER_GITHUB_ACCESS_TOKEN }}
+    #     render_api_key_server: ${{ secrets.RENDER_API_KEY_SERVER }}
+    #     render_owner_id: ${{ secrets.RENDER_OWNER_ID }}
+    #     mongo_connection_str: ${{ secrets.MONGO_CONNECTION_STR }}
+    #     aws_access_key_id: ${{ env.AWS_ACCESS_KEY_ID }}
+    #     aws_secret_access_key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+    #     auth_secret: ${{ secrets.AUTH_SECRET }}
+    #     auth_github_id: ${{ secrets.AUTH_GITHUB_ID }}
+    #     auth_github_secret: ${{ secrets.AUTH_GITHUB_SECRET }}

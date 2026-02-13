@@ -50,7 +50,7 @@ export async function getRepoMetadata(): Promise<{
 }
 
 export const getPostHogClient = once(() => {
-  const { VITE_POSTHOG_API_KEY = '' } = process.env;
+  const { VITE_POSTHOG_API_KEY = 'token' } = process.env;
   if (!VITE_POSTHOG_API_KEY) {
     console.warn('VITE_POSTHOG_API_KEY not found');
   }

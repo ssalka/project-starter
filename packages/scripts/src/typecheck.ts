@@ -52,7 +52,7 @@ async function typecheck() {
     }),
   );
 
-  posthog.capture({
+  posthog?.capture({
     distinctId: 'dev',
     event: 'Typechecking Completed',
     properties: {
@@ -69,8 +69,8 @@ async function typecheck() {
   });
 
   if (error) {
-    throw error;
+    throw error as Error;
   }
 }
 
-typecheck();
+void typecheck();

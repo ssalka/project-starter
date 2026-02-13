@@ -1,10 +1,26 @@
+node_modules
+
 .DS_Store
 
-# Logs
-*.log
-npm-debug.log*
+.env
+!packages/client/.env
+.env.local
 
-# Directories
-node_modules
+build
 dist
-.ignore
+!.github/actions/build
+tsconfig.tsbuildinfo
+
+ignore
+
+.terraform
+.terraform.lock.hcl
+*.tfstate
+*.tfvars
+
+# Playwright
+.auth
+.playwright-mcp
+
+# Agent directories (local state)
+.agent-docs

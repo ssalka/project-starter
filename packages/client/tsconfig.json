@@ -1,0 +1,30 @@
+{
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["../server"],
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "useDefineForClassFields": false,
+    "target": "ES2022",
+    "sourceMap": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@ssalka/api/types": ["../server/src/types.ts"],
+      "@ssalka/api/env": ["../server/env.d.ts"],
+      "@ssalka/common/*": ["../common/src/*"],
+      "@ssalka/ui/*": ["../ui/src/*"]
+    },
+
+    // Vite takes care of building everything, not tsc.
+    "noEmit": true
+  },
+  "references": [{ "path": "../common" }, { "path": "../ui" }]
+}

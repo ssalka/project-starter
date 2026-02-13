@@ -1,0 +1,100 @@
+name: Deploy
+description: 'Deploy server and frontend'
+
+# NOTE all environment variables that are needed by the server are passed through here
+inputs:
+  environment:
+    description: 'Environment to deploy to'
+    required: true
+  commit_sha:
+    description: 'Commit SHA to use as image tag'
+    required: true
+
+  auth_secret:
+    description: 'Used by Auth.js for hashing purposes'
+    required: true
+  auth_github_id:
+    description: 'Client ID for GitHub OAuth app'
+    required: true
+  auth_github_secret:
+    description: 'Client secret for GitHub OAuth app'
+    required: true
+  aws_access_key_id:
+    description: 'AWS access key id'
+    required: true
+  aws_secret_access_key:
+    description: 'AWS secret access key'
+    required: true
+  github_token:
+    description: 'GitHub token for registry access'
+    required: true
+  github_render_token:
+    description: 'GitHub token for Render'
+    required: true
+  mongo_connection_str:
+    description: 'MongoDB connection string'
+    required: true
+  render_api_key_server:
+    description: 'Render API key'
+    required: true
+  render_owner_id:
+    description: 'Render owner ID'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Build server Docker image
+      uses: ./.github/actions/build-server
+      with:
+        environment: ${{ inputs.environment }}
+        commit_sha: ${{ inputs.commit_sha }}
+        github_token: ${{ inputs.github_token }}
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: "1.11.4"
+
+    - name: Terraform Init
+      shell: bash
+      working-directory: ./infra/environments/${{ inputs.environment }}
+      run: terraform init
+
+    # Terraform points the deployed server to the Docker image built above
+    - name: Terraform Apply
+      shell: bash
+      working-directory: ./infra/environments/${{ inputs.environment }}
+      env:
+        # TF_LOG: DEBUG
+        AWS_ACCESS_KEY_ID: ${{ inputs.aws_access_key_id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.aws_secret_access_key }}
+        TF_VAR_commit_sha: ${{ inputs.commit_sha }}
+        TF_VAR_auth_secret: ${{ inputs.auth_secret }}
+        TF_VAR_auth_github_id: ${{ inputs.auth_github_id }}
+        TF_VAR_auth_github_secret: ${{ inputs.auth_github_secret }}
+        TF_VAR_github_render_token: ${{ inputs.github_render_token }}
+        TF_VAR_mongo_connection_str: ${{ inputs.mongo_connection_str }}
+        TF_VAR_render_api_key_server: ${{ inputs.render_api_key_server }}
+        TF_VAR_render_owner_id: ${{ inputs.render_owner_id }}
+      run: terraform apply -auto-approve -input=false
+        
+    # This step pushes to the S3 bucket specified by Terraform
+    - name: Deploy frontend
+      uses: ./.github/actions/deploy-frontend
+      with:
+        environment: ${{ inputs.environment }}
+        aws_access_key_id: ${{ inputs.aws_access_key_id }}
+        aws_secret_access_key: ${{ inputs.aws_secret_access_key }}
+
+    # Only needed for running the tracking script - perhaps overkill
+    - name: Set up repository
+      uses: ./.github/actions/setup-repo
+
+    - name: Track deploy success
+      shell: bash
+      working-directory: ./packages/scripts
+      env:
+        NODE_ENV: ${{ inputs.environment }}
+      run: pnpm tsx src/track-deploy
+

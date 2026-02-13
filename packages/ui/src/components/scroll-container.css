@@ -1,0 +1,167 @@
+/* =============================================================================
+ * SCROLL CONTAINER - CSS Scroll-Driven Animation Gradients
+ * ============================================================================= */
+
+.scroll-container {
+  --scroll-gradient-size: 3rem;
+  --scroll-gradient-color: var(--background);
+}
+
+/*
+ * Sentinel elements at content boundaries for view timeline detection.
+ * Size matches gradient size so entry/exit animation duration is proportional,
+ * creating a smooth transition. Negative margins prevent layout impact.
+ */
+.scroll-sentinel-block-start {
+  display: block;
+  height: var(--scroll-gradient-size);
+  width: 100%;
+  flex-shrink: 0;
+  margin-block-end: calc(-1 * var(--scroll-gradient-size));
+}
+
+.scroll-sentinel-block-end {
+  display: block;
+  height: var(--scroll-gradient-size);
+  width: 100%;
+  flex-shrink: 0;
+  margin-block-start: calc(-1 * var(--scroll-gradient-size));
+}
+
+.scroll-sentinel-inline-start {
+  display: inline-block;
+  width: var(--scroll-gradient-size);
+  height: 100%;
+  flex-shrink: 0;
+  margin-inline-end: calc(-1 * var(--scroll-gradient-size));
+}
+
+.scroll-sentinel-inline-end {
+  display: inline-block;
+  width: var(--scroll-gradient-size);
+  height: 100%;
+  flex-shrink: 0;
+  margin-inline-start: calc(-1 * var(--scroll-gradient-size));
+}
+
+/* Base gradient styles - hidden by default (for browsers without support) */
+.scroll-gradient-top,
+.scroll-gradient-bottom,
+.scroll-gradient-left,
+.scroll-gradient-right {
+  opacity: 0;
+}
+
+.scroll-gradient-top,
+.scroll-gradient-bottom {
+  height: var(--scroll-gradient-size);
+}
+
+.scroll-gradient-left,
+.scroll-gradient-right {
+  width: var(--scroll-gradient-size);
+}
+
+.scroll-gradient-top {
+  background: linear-gradient(to bottom, var(--scroll-gradient-color), transparent);
+}
+
+.scroll-gradient-bottom {
+  background: linear-gradient(to top, var(--scroll-gradient-color), transparent);
+}
+
+.scroll-gradient-left {
+  background: linear-gradient(to right, var(--scroll-gradient-color), transparent);
+}
+
+.scroll-gradient-right {
+  background: linear-gradient(to left, var(--scroll-gradient-color), transparent);
+}
+
+/* =============================================================================
+ * Scroll-Driven Animation Support
+ * Uses view() timeline with sentinels to detect scroll position
+ * ============================================================================= */
+
+@supports (animation-timeline: view()) {
+  /* Animation for start sentinels: hidden → visible as sentinel exits */
+  @keyframes scroll-gradient-show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Animation for end sentinels: visible → hidden as sentinel enters */
+  @keyframes scroll-gradient-hide {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  /* Hoist view timelines from sentinels to parent container */
+  .scroll-container {
+    timeline-scope:
+      --sentinel-block-start, --sentinel-block-end, --sentinel-inline-start, --sentinel-inline-end;
+  }
+
+  /* Define view timelines on sentinel elements */
+  .scroll-sentinel-block-start {
+    view-timeline: --sentinel-block-start block;
+  }
+
+  .scroll-sentinel-block-end {
+    view-timeline: --sentinel-block-end block;
+  }
+
+  .scroll-sentinel-inline-start {
+    view-timeline: --sentinel-inline-start inline;
+  }
+
+  .scroll-sentinel-inline-end {
+    view-timeline: --sentinel-inline-end inline;
+  }
+
+  /*
+   * Gradient animation logic:
+   *
+   * START sentinels (top/left) - use `exit` range:
+   * - At scroll 0: sentinel visible, no exit yet → backwards-fill = opacity 0 (hidden)
+   * - Scrolled away: sentinel exits → animation completes → opacity 1 (visible)
+   * - No overflow: sentinel always visible, no exit → opacity 0 (hidden)
+   *
+   * END sentinels (bottom/right) - use `entry` range:
+   * - At scroll 0: sentinel not visible, no entry yet → backwards-fill = opacity 1 (visible)
+   * - Scrolled to end: sentinel enters → animation completes → opacity 0 (hidden)
+   * - No overflow: sentinel already visible, entry complete → opacity 0 (hidden)
+   */
+
+  .scroll-gradient-top {
+    animation: scroll-gradient-show linear both;
+    animation-timeline: --sentinel-block-start;
+    animation-range: exit;
+  }
+
+  .scroll-gradient-bottom {
+    animation: scroll-gradient-hide linear both;
+    animation-timeline: --sentinel-block-end;
+    animation-range: entry;
+  }
+
+  .scroll-gradient-left {
+    animation: scroll-gradient-show linear both;
+    animation-timeline: --sentinel-inline-start;
+    animation-range: exit;
+  }
+
+  .scroll-gradient-right {
+    animation: scroll-gradient-hide linear both;
+    animation-timeline: --sentinel-inline-end;
+    animation-range: entry;
+  }
+}

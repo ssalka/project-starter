@@ -1,0 +1,171 @@
+{
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.codeActionsOnSave.rules": ["!prefer-const", "*"],
+
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+
+  "search.exclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/build/**": true
+  },
+
+  "tailwindCSS.classFunctions": ["cn", "cva"],
+  "tailwindCSS.experimental.configFile": {
+    "packages/client/src/tailwind.css": "packages/client/src/**",
+    "packages/ui/src/tailwind.css": "packages/ui/src/**"
+  },
+
+  "todo-tree.tree.scanMode": "workspace only",
+  "todo-tree.tree.showCountsInTree": true,
+  "todo-tree.general.tags": [
+    "BUG",
+    "FIXME",
+    "HACK",
+    "IDEA",
+    "NOTE",
+    "REVIEW",
+    "TODO",
+    "WARN",
+    "@ts-ignore",
+    "@ts-expect-error",
+    "eslint-disable",
+    "eslint-disable-next-line",
+    "eslint-enable",
+    "prettier-ignore"
+  ],
+  // "todo-tree.regex.regex": "(/\\*\\*\\s*\\n|//)\\s*\\*\\s($TAGS).*(\\n\\s*(//|/\\*)\\s{2,}.*)*\\*/",
+  // "todo-tree.regex.regex": "/\\*\\*\\s*\\*\\s*($TAGS).*",
+  // FIXME not working for multiline comments
+  "todo-tree.regex.regex": "(#|//|/\\*\\*|\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)",
+  "todo-tree.highlights.defaultHighlight": {
+    "gutterIcon": true
+  },
+  "todo-tree.highlights.customHighlight": {
+    "BUG": {
+      "type": "text-and-comment",
+      "iconColour": "#f05a4f",
+      "background": "#f05a4f",
+      "rulerColour": "#f05a4f",
+      "foreground": "#FFFFFF",
+      "icon": "bug"
+    },
+    "FIXME": {
+      "type": "text-and-comment",
+      "icon": "tools",
+      "iconColour": "#F09D4F",
+      "background": "#F09D4F",
+      "rulerColour": "#F09D4F",
+      "foreground": "#000000"
+    },
+    "HACK": {
+      "type": "text-and-comment",
+      "icon": "tools",
+      "iconColour": "#F09D4F",
+      "background": "#F09D4F",
+      "rulerColour": "#F09D4F",
+      "foreground": "#000000"
+    },
+    "IDEA": {
+      "type": "text-and-comment",
+      "foreground": "#e0dd20",
+      "rulerColour": "#e0dd20",
+      "icon": "light-bulb"
+    },
+    "NOTE": {
+      "type": "text-and-comment",
+      "foreground": "#dd7efa",
+      "rulerColour": "#dd7efa",
+      "icon": "pencil"
+    },
+    "REVIEW": {
+      "type": "text-and-comment",
+      "icon": "person-add",
+      "foreground": "#57CAFF",
+      "rulerColour": "#57CAFF"
+    },
+    "TODO": {
+      "icon": "checkbox",
+      "type": "text-and-comment",
+      "foreground": "#36d636",
+      "rulerColour": "#36d636"
+    },
+    "WARN": {
+      "type": "text-and-comment",
+      "icon": "alert",
+      "iconColour": "#F0DB4F",
+      "background": "#F0DB4F",
+      "rulerColour": "#F0DB4F",
+      "foreground": "#323330"
+    },
+    "@ts-ignore": {
+      "type": "text-and-comment",
+      "iconColour": "#3178c6",
+      "background": "#3178c6",
+      "rulerColour": "#3178c6",
+      "foreground": "#FFFFFF",
+      "icon": "beaker",
+      "rulerLane": "none"
+    },
+    "@ts-expect-error": {
+      "type": "text-and-comment",
+      "iconColour": "#3178c6",
+      "background": "#3178c6",
+      "rulerColour": "#3178c6",
+      "foreground": "#FFFFFF",
+      "icon": "smiley",
+      "rulerLane": "none",
+      "hideFromTree": true
+    },
+    "eslint-enable": {
+      "type": "text-and-comment",
+      "background": "#4B32C3",
+      "rulerColour": "#4B32C3",
+      "iconColour": "#4B32C3",
+      "foreground": "#FFFFFF",
+      "icon": "beaker",
+      "rulerLane": "none",
+      "hideFromTree": true
+    },
+    "eslint-disable": {
+      "type": "text-and-comment",
+      "background": "#4B32C3",
+      "rulerColour": "#4B32C3",
+      "iconColour": "#4B32C3",
+      "foreground": "#FFFFFF",
+      "icon": "beaker",
+      "rulerLane": "none",
+      "hideFromTree": true
+    },
+    "eslint-disable-next-line": {
+      "type": "text-and-comment",
+      "background": "#4B32C3",
+      "rulerColour": "#4B32C3",
+      "iconColour": "#4B32C3",
+      "foreground": "#FFFFFF",
+      "icon": "beaker",
+      "rulerLane": "none",
+      "hideFromTree": true
+    },
+    "prettier-ignore": {
+      "type": "text-and-comment",
+      "background": "#ff69b4",
+      "rulerColour": "#ff69b4",
+      "foreground": "#FFFFFF",
+      "icon": "beaker",
+      "rulerLane": "none",
+      "hideFromTree": true
+    }
+  },
+
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@types/node/assert.d.ts",
+    "@types/node/console.d.ts"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.experimental.useTsgo": true,
+
+  "workbench.editor.labelFormat": "short"
+}

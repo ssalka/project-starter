@@ -1,0 +1,54 @@
+/**
+ * =============================================================================
+ * DESIGN SYSTEM - COLOR TOKENS
+ * =============================================================================
+ * 
+ * This file imports and exposes the design token system.
+ * 
+ * Token Architecture (3 layers):
+ * 1. Primitives: Raw color ramps with no semantic meaning
+ * 2. Semantic: Meaningful tokens for UI elements (supports theming)
+ * 3. Component: Component-specific tokens (defined in components)
+ * 
+ * USAGE:
+ * - In Tailwind/CSS: Use semantic tokens (bg-primary, text-foreground, etc.)
+ * - Never use primitive tokens directly in components
+ * =============================================================================
+ */
+
+@import './tokens/primitives.css';
+@import './tokens/semantic.css';
+
+/* =============================================================================
+ * This exposes the brand colors for use as Tailwind utilities.
+ * Modern industrial palette with warm neutrals and orange accent.
+ * ============================================================================= */
+@layer base {
+  @theme {
+    /* --- Orange (Primary Accent) --- */
+    --color-orange-50: hsl(24 100% 97%);
+    --color-orange-100: hsl(24 100% 93%);
+    --color-orange-200: hsl(24 95% 82%);
+    --color-orange-300: hsl(24 90% 68%);
+    --color-orange-400: hsl(24 95% 56%);
+    --color-orange-500: hsl(24 100% 50%);
+    --color-orange-600: hsl(24 100% 42%);
+    --color-orange-700: hsl(24 100% 35%);
+    --color-orange-800: hsl(24 100% 25%);
+    --color-orange-900: hsl(24 100% 15%);
+    --color-orange-950: hsl(24 100% 8%);
+
+    /* --- Warm Neutrals (Backgrounds & Surfaces) --- */
+    --color-warm-50: hsl(40 33% 99%);
+    --color-warm-100: hsl(40 25% 97%);
+    --color-warm-200: hsl(40 20% 94%);
+    --color-warm-300: hsl(40 15% 88%);
+    --color-warm-400: hsl(35 10% 70%);
+    --color-warm-500: hsl(30 8% 52%);
+    --color-warm-600: hsl(30 6% 40%);
+    --color-warm-700: hsl(30 8% 28%);
+    --color-warm-800: hsl(30 10% 18%);
+    --color-warm-900: hsl(30 10% 12%);
+    --color-warm-950: hsl(30 12% 8%);
+  }
+}

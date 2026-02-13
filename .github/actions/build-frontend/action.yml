@@ -1,0 +1,32 @@
+name: Build frontend
+description: 'Build the frontend'
+
+inputs:
+  environment:
+    description: 'Which environment to deploy to'
+    required: true
+    default: 'staging'
+  is_playwright:
+    description: 'Whether to build for Playwright VITE_E2E testing'
+    required: false
+    default: true
+
+runs:
+  using: composite
+  steps:
+
+  - name: Build Project
+    shell: bash
+    working-directory: ./packages/client
+    run: pnpm build --mode=${{ inputs.environment }}
+    env:
+      VITE_CI: ${{ inputs.is_playwright }}
+      VITE_E2E: ${{ inputs.is_playwright }}
+      VITE_USER_NODE_ENV: ${{ inputs.is_playwright == 'true' && 'test' || inputs.environment }}
+
+  - name: Upload build output
+    uses: actions/upload-artifact@v4
+    with:
+      name: Build Output (${{ inputs.is_playwright == 'true' && 'E2E' || inputs.environment }})
+      path: ./packages/client/dist/
+      retention-days: 30

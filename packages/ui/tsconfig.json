@@ -1,0 +1,21 @@
+{
+  "extends": ["../../tsconfig.json"],
+
+  "include": ["src", "tailwind.config.ts", "tailwind-preset.ts"],
+
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "lib": ["DOM", "ESNext"],
+    "outDir": "build",
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+
+    "paths": {
+      "@ssalka/ui/*": ["./src/*"]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+name: Unit Tests
+description: 'Run unit tests'
+
+runs:
+  using: composite
+  steps:
+  - name: Build common package
+    shell: bash
+    run: pnpm --filter @ssalka/common build
+  - name: Run unit tests
+    shell: bash
+    run: pnpm --parallel test

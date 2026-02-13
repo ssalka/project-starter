@@ -1,0 +1,21 @@
+@import '../../ui/src/tailwind.css';
+
+@config '../tailwind.config.ts';
+
+/* prettier-ignore */
+@source inline('bg-{red,orange,yellow,green,cyan,sky,blue,indigo,violet,purple,rose,slate,gray,stone}-{100,300,500}');
+
+/* prettier-ignore */
+@source inline('{border,text}-{red,orange,yellow,green,cyan,sky,blue,indigo,violet,purple,rose,slate,gray,stone}-500');
+
+/* margin and padding - generates sizes 0-8 with increments of 1 */
+@source inline('{m,p}{,t,b,l,r,x,y}-{0..8..1}');
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

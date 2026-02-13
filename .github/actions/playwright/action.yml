@@ -1,0 +1,64 @@
+name: Playwright Tests
+description: 'Run end-to-end tests'
+
+inputs:
+  environment:
+    description: 'Which environment the build was run in'
+    required: true
+    default: 'staging'
+  auth-secret:
+    description: 'The auth secret to use for the tests'
+    required: true
+    default: 'test_secret'
+
+runs:
+  using: composite
+  steps:
+  - uses: actions/download-artifact@v4
+    with:
+      name: Build Output (E2E)
+      path: ./packages/client/dist/
+
+  - name: Get Playwright version
+    shell: bash
+    working-directory: ./packages/client
+    run: echo "PLAYWRIGHT_VERSION=$(pnpm exec playwright -V | awk '{ print $2 }')" >> $GITHUB_OUTPUT
+    id: playwright-version
+
+  - name: Set up Playwright browser cache
+    uses: actions/cache@v4
+    id: playwright-cache
+    with:
+      path: ~/.cache/ms-playwright
+      key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}
+      restore-keys: ${{ runner.os }}-playwright-
+
+  - name: Install Playwright browsers
+    if: steps.playwright-cache.outputs.cache-hit != 'true'
+    shell: bash
+    working-directory: ./packages/client
+    run: pnpm exec playwright install --with-deps
+
+  - name: Run Playwright tests
+    shell: bash
+    working-directory: ./packages/client
+    env:
+      AUTH_SECRET: ${{ inputs.auth-secret }}
+      DEBUG: pw:webserver
+      NODE_ENV: ${{ inputs.environment }}
+      PLAYWRIGHT_JSON_OUTPUT_NAME: results.json
+    run: pnpm exec playwright test --reporter json
+
+  - name: Upload Playwright test artifacts
+    if: always()
+    uses: actions/upload-artifact@v4
+    with:
+      name: Playwright Test Results
+      path: ./packages/client/test-results/
+      retention-days: 30
+
+  - name: Playwright report comment
+    if: always()
+    uses: daun/playwright-report-summary@v3.3.0
+    with:
+      report-file: ./packages/client/results.json

@@ -1,0 +1,63 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-edit.sh \"$CLAUDE_FILE_PATH\"",
+            "timeout": 30000
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Skill(ui)",
+      "Skill(installing-dependencies)",
+      "Skill(testing-patterns)",
+      "Bash(git ls-tree:*)",
+      "Bash(pnpm install)",
+      "Bash(pnpm i)",
+      "Bash(pnpm list:*)",
+      "Bash(pnpm build)",
+      "Bash(pnpm checks)",
+      "Bash(pnpm format:*)",
+      "Bash(pnpm format)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm test:e2e:*)",
+      "Bash(pnpm test:e2e)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm test)",
+      "Bash(pnpm typecheck:*)",
+      "Bash(pnpm typecheck)",
+      "Bash(pnpm --filter:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git status)",
+      "Bash(grep:*)",
+      "Bash(head:*)",
+      "Bash(ls:*)",
+      "Bash(tail:*)",
+      "Bash(tree:*)"
+    ],
+    "deny": [
+      "NotebookEdit",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Bash(npx:*)",
+      "Bash(git -C *)"
+    ]
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "autoCodeSplitting": true,
+  "routeFileIgnorePattern": ".spec.tsx$"
+}

@@ -1,0 +1,8 @@
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+**/build
+
+# Do not format with prettier - it just breaks in GitHub and doesn't detect the actions
+.github

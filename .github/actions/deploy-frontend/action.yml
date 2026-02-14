@@ -1,0 +1,36 @@
+name: Deploy Frontend
+description: 'Deploy the frontend to S3'
+
+inputs:
+  environment:
+    description: 'Which environment to deploy to'
+    required: true
+    default: 'staging'
+  aws_access_key_id:
+    description: 'AWS access key id'
+    required: true
+  aws_secret_access_key:
+    description: 'AWS secret access key'
+    required: true
+
+runs:
+  using: composite
+  steps:
+  - uses: actions/download-artifact@v4
+    with:
+      name: Build Output (${{ inputs.environment }})
+      path: ./packages/client/dist/
+
+  - name: Configure AWS credentials
+    uses: aws-actions/configure-aws-credentials@v4
+    with:
+      aws-access-key-id: ${{ inputs.aws_access_key_id }}
+      aws-secret-access-key: ${{ inputs.aws_secret_access_key }}
+      aws-region: ${{ inputs.environment == 'production' && 'us-east-1' || 'us-west-2' }}
+
+  - name: Sync to S3
+    shell: bash
+    working-directory: ./packages/client
+    # TODO upload the terraform output as an artifact and use it here to get the bucket name
+    # TODO replace with actual S3 bucket name when deploying
+    run: aws s3 sync dist/ s3://app-frontend-${{ inputs.environment }} --delete

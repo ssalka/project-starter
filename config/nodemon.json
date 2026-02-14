@@ -1,5 +1,0 @@
-{
-  "watch": ["src/server"],
-  "ext": "ts",
-  "exec": "ts-node -P config/tsconfig.server.json --type-check index"
-}

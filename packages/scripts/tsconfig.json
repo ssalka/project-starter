@@ -1,0 +1,14 @@
+{
+  "extends": ["../../tsconfig.json"],
+
+  "include": ["src"],
+
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "lib": ["DOM", "ESNext"],
+    "noEmit": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  }
+}

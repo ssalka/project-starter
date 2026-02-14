@@ -1,0 +1,292 @@
+/**
+ * =============================================================================
+ * DESIGN SYSTEM - SEMANTIC TOKENS
+ * =============================================================================
+ * 
+ * Layer 2: Meaningful design tokens that reference colors.
+ * These tokens provide semantic meaning and support theming (light/dark).
+ * 
+ * USE THESE in components, not colors.
+ * =============================================================================
+ */
+
+@layer base {
+  :root {
+    /* =========================================================================
+     * CORE SEMANTIC TOKENS - Light Mode
+     * Modern industrial aesthetic with warm neutrals and orange accent
+     * ========================================================================= */
+
+    /* --- Base radius (component default) --- */
+    --radius: var(--radius-md);
+
+    /* --- Backgrounds & Surfaces ---
+     * Layered surface system with warm off-white tones.
+     */
+    --background: var(--color-warm-100); /* Page background - off-white */
+    --foreground: var(--color-warm-900); /* Primary text - warm dark */
+
+    /* Surface tiers for layered UI */
+    --surface: var(--color-warm-50); /* Default surface (cards, etc.) */
+    --surface-raised: var(--color-warm-100); /* Elevated surfaces */
+    --surface-sunken: var(--color-warm-200); /* Inset/sunken areas */
+    --surface-overlay: var(--color-warm-50); /* Popovers, dropdowns, modals */
+
+    /* --- Card --- */
+    --card: var(--color-warm-50);
+    --card-foreground: var(--color-warm-900);
+
+    /* --- Popover --- */
+    --popover: var(--color-warm-50);
+    --popover-foreground: var(--color-warm-900);
+
+    /* --- Primary ---
+     * Orange accent for primary actions and key UI elements.
+     */
+    --primary: var(--color-orange-500);
+    --primary-foreground: hsl(0 0% 100%);
+    --primary-hover: var(--color-orange-600);
+    --primary-active: var(--color-orange-400);
+
+    /* --- Secondary ---
+     * Warm neutral for secondary actions.
+     */
+    --secondary: var(--color-warm-200);
+    --secondary-foreground: var(--color-warm-800);
+    --secondary-hover: var(--color-warm-300);
+    --secondary-active: var(--color-warm-100);
+
+    /* --- Accent ---
+     * Orange tint for emphasis and visual interest (selections, highlights).
+     */
+    --accent: var(--color-orange-100);
+    --accent-foreground: var(--color-orange-900);
+    --accent-hover: var(--color-orange-200);
+    --accent-active: var(--color-orange-300);
+
+    /* --- Muted ---
+     * For less prominent UI elements (disabled, placeholder).
+     */
+    --muted: var(--color-warm-200);
+    --muted-foreground: var(--color-warm-500);
+
+    /* --- Destructive ---
+     * For dangerous/destructive actions.
+     */
+    --destructive: var(--color-red-500);
+    --destructive-foreground: hsl(0 0% 100%);
+    --destructive-hover: var(--color-red-600);
+    --destructive-active: var(--color-red-700);
+
+    /* --- Borders & Inputs ---
+     * Dark borders with low opacity for subtle visibility.
+     */
+    --border: hsl(30 10% 12% / 0.12);
+    --border-strong: hsl(30 10% 12% / 0.2);
+    --border-subtle: hsl(30 10% 12% / 0.06);
+    --input: hsl(30 10% 12% / 0.12);
+    --input-focus: var(--color-orange-400);
+
+    /* --- Ring (Focus) ---
+     * Focus indicator ring color.
+     */
+    --ring: var(--color-orange-500);
+    --ring-offset: var(--color-warm-50);
+
+    /* --- Link ---
+     * Text links throughout the UI.
+     */
+    --link: var(--color-orange-600);
+    --link-hover: var(--color-orange-700);
+    --link-visited: var(--color-orange-800);
+
+    /* --- Overlay ---
+     * Modal/dialog backdrop overlay.
+     */
+    --overlay: 30 10% 12%;
+    --overlay-opacity: 0.5;
+
+    /* =========================================================================
+     * STATUS SEMANTIC TOKENS - Light Mode
+     * ========================================================================= */
+
+    /* --- Success --- */
+    --success: var(--color-emerald-500);
+    --success-foreground: var(--color-emerald-700);
+    --success-background: var(--color-emerald-50);
+    --success-border: var(--color-emerald-300);
+
+    /* --- Warning --- */
+    --warning: var(--color-amber-500);
+    --warning-foreground: var(--color-amber-700);
+    --warning-background: var(--color-amber-50);
+    --warning-border: var(--color-amber-300);
+
+    /* --- Error --- */
+    --error: var(--color-red-500);
+    --error-foreground: var(--color-red-700);
+    --error-background: var(--color-red-50);
+    --error-border: var(--color-red-300);
+
+    /* --- Info --- */
+    --info: var(--color-blue-500);
+    --info-foreground: var(--color-blue-700);
+    --info-background: var(--color-blue-50);
+    --info-border: var(--color-blue-300);
+
+    /* =========================================================================
+     * SIDEBAR SEMANTIC TOKENS - Light Mode
+     * ========================================================================= */
+    --sidebar-background: var(--color-warm-900);
+    --sidebar-foreground: var(--color-warm-100);
+    --sidebar-border: var(--color-warm-700);
+    --sidebar-accent: var(--color-orange-600);
+    --sidebar-accent-foreground: var(--color-warm-50);
+    --sidebar-ring: var(--color-orange-500);
+    --sidebar-primary: var(--color-orange-500);
+    --sidebar-primary-foreground: hsl(0 0% 100%);
+    --sidebar-muted: var(--color-warm-800);
+    --sidebar-muted-foreground: var(--color-warm-400);
+
+    /* =========================================================================
+     * DATA VISUALIZATION TOKENS - Light Mode
+     * ========================================================================= */
+    --chart-1: var(--color-purple-500);
+    --chart-2: var(--color-violet-500);
+    --chart-3: var(--color-pink-500);
+    --chart-4: var(--color-orange-400);
+    --chart-5: var(--color-yellow-400);
+    --chart-6: var(--color-emerald-500);
+    --chart-7: var(--color-blue-500);
+  }
+
+  /* ===========================================================================
+   * source: https://patorjk.com/software/taag
+   *
+   * ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+   * ░░░       ░░░░      ░░░       ░░░  ░░░░  ░░░░░░░░  ░░░░  ░░░      ░░░       ░░░        ░░░
+   * ▒▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒  ▒▒▒  ▒▒▒▒▒▒▒▒▒   ▒▒   ▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒▒▒
+   * ▓▓▓  ▓▓▓▓  ▓▓  ▓▓▓▓  ▓▓       ▓▓▓     ▓▓▓▓▓▓▓▓▓▓▓        ▓▓  ▓▓▓▓  ▓▓  ▓▓▓▓  ▓▓      ▓▓▓▓▓
+   * ███  ████  ██        ██  ███  ███  ███  █████████  █  █  ██  ████  ██  ████  ██  █████████
+   * ███       ███  ████  ██  ████  ██  ████  ████████  ████  ███      ███       ███        ███
+   * ██████████████████████████████████████████████████████████████████████████████████████████
+   *
+   * =========================================================================== */
+  .dark {
+    /* --- Backgrounds & Surfaces ---
+     * Warm dark grays instead of cold slate.
+     */
+    --background: var(--color-warm-900);
+    --foreground: var(--color-warm-100);
+
+    --surface: var(--color-warm-800);
+    --surface-raised: var(--color-warm-700);
+    --surface-sunken: var(--color-warm-950);
+    --surface-overlay: var(--color-warm-800);
+
+    /* --- Card --- */
+    --card: var(--color-warm-800);
+    --card-foreground: var(--color-warm-100);
+
+    /* --- Popover --- */
+    --popover: var(--color-warm-800);
+    --popover-foreground: var(--color-warm-100);
+
+    /* --- Primary --- */
+    --primary: var(--color-orange-500);
+    --primary-foreground: hsl(0 0% 100%);
+    --primary-hover: var(--color-orange-400);
+    --primary-active: var(--color-orange-600);
+
+    /* --- Secondary --- */
+    --secondary: var(--color-warm-700);
+    --secondary-foreground: var(--color-warm-200);
+    --secondary-hover: var(--color-warm-600);
+    --secondary-active: var(--color-warm-800);
+
+    /* --- Accent --- */
+    --accent: var(--color-orange-900);
+    --accent-foreground: var(--color-orange-100);
+    --accent-hover: var(--color-orange-800);
+    --accent-active: var(--color-orange-700);
+
+    /* --- Muted --- */
+    --muted: var(--color-warm-800);
+    --muted-foreground: var(--color-warm-400);
+
+    /* --- Destructive --- */
+    --destructive: var(--color-red-600);
+    --destructive-foreground: var(--color-red-100);
+    --destructive-hover: var(--color-red-500);
+    --destructive-active: var(--color-red-400);
+
+    /* --- Borders & Inputs --- */
+    --border: hsl(30 10% 100% / 0.12);
+    --border-strong: hsl(30 10% 100% / 0.2);
+    --border-subtle: hsl(30 10% 100% / 0.06);
+    --input: hsl(30 10% 100% / 0.12);
+    --input-focus: var(--color-orange-400);
+
+    /* --- Ring (Focus) --- */
+    --ring: var(--color-orange-500);
+    --ring-offset: var(--color-warm-900);
+
+    /* --- Link --- */
+    --link: var(--color-orange-400);
+    --link-hover: var(--color-orange-300);
+    --link-visited: var(--color-orange-500);
+
+    /* --- Overlay --- */
+    --overlay: 0 0% 0%;
+    --overlay-opacity: 0.7;
+
+    /* --- Status --- */
+    --success: var(--color-emerald-400);
+    --success-foreground: var(--color-emerald-100);
+    --success-background: var(--color-emerald-950);
+    --success-border: var(--color-emerald-800);
+
+    --warning: var(--color-amber-400);
+    --warning-foreground: var(--color-amber-100);
+    --warning-background: var(--color-amber-950);
+    --warning-border: var(--color-amber-800);
+
+    --error: var(--color-red-400);
+    --error-foreground: var(--color-red-100);
+    --error-background: var(--color-red-950);
+    --error-border: var(--color-red-800);
+
+    --info: var(--color-blue-400);
+    --info-foreground: var(--color-blue-100);
+    --info-background: var(--color-blue-950);
+    --info-border: var(--color-blue-800);
+
+    /* --- Sidebar --- */
+    --sidebar-background: var(--color-warm-950);
+    --sidebar-foreground: var(--color-warm-100);
+    --sidebar-border: var(--color-warm-800);
+    --sidebar-accent: var(--color-orange-800);
+    --sidebar-accent-foreground: var(--color-orange-100);
+    --sidebar-ring: var(--color-orange-500);
+    --sidebar-primary: var(--color-orange-500);
+    --sidebar-primary-foreground: var(--color-warm-950);
+    --sidebar-muted: var(--color-warm-700);
+    --sidebar-muted-foreground: var(--color-warm-400);
+  }
+}
+
+/* =============================================================================
+ * REDUCED MOTION
+ * ============================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-75: 0ms;
+    --duration-100: 0ms;
+    --duration-150: 0ms;
+    --duration-200: 0ms;
+    --duration-300: 0ms;
+    --duration-500: 0ms;
+    --duration-700: 0ms;
+    --duration-1000: 0ms;
+  }
+}

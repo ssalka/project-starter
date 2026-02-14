@@ -1,0 +1,19 @@
+{
+  "name": "scripts",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsgo"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "dotenv": "^16.4.5",
+    "execa": "^9.3.1",
+    "lodash-es": "^4.17.21",
+    "posthog-node": "^4.1.1"
+  }
+}

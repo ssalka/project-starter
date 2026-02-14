@@ -1,0 +1,51 @@
+{
+  "name": "server",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsgo -b",
+    "// NOTE": "currently doesn't work - see https://github.com/privatenumber/tsx/issues/210",
+    "dev": "tsx watch --include ./.env src",
+    "format": "prettier -w src/**/*.ts",
+    "format:check": "prettier src/**/*.ts --check",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint --format codeframe . ",
+    "start": "node ./build",
+    "test": "cross-env NODE_ENV=test vitest",
+    "test:ui": "cross-env NODE_ENV=test vitest --ui",
+    "// BUG": "should use `--noEmit` here as well, but it's incompatible with `-b`: https://github.com/microsoft/TypeScript/issues/58336",
+    "typecheck": "tsgo -b",
+    "typecheck:track": "tsx ../scripts/src/typecheck"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@auth/express": "^0.12.0",
+    "@casl/ability": "^6.7.3",
+    "@casl/mongoose": "^8.0.3",
+    "@ssalka/common": "workspace:*",
+    "@trpc/server": "^11.6.0",
+    "body-parser": "^2.2.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "http-errors-enhanced": "^3.0.2",
+    "lodash-es": "^4.17.21",
+    "mongoose": "^8.19.2",
+    "superjson": "^2.2.6",
+    "tsconfig-paths": "^4.2.0",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.6",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/lodash-es": "^4.17.12",
+    "@types/semver": "^7.7.1",
+    "mongodb-memory-server": "^10.2.3"
+  }
+}

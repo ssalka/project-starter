@@ -1,0 +1,115 @@
+/**
+ * =============================================================================
+ * DESIGN SYSTEM - MAIN STYLESHEET
+ * =============================================================================
+ *
+ * Entry point for design system styles.
+ * Import this file in your application to get the full design system.
+ *
+ * Architecture:
+ * - Tailwind CSS v4 base styles
+ * - Design tokens (primitives → semantics)
+ * - Font definitions
+ * - Custom utilities
+ * - Base element styles
+ * =============================================================================
+ */
+
+@import 'tailwindcss';
+
+/* Import design tokens */
+@import './colors.css';
+@import './fonts.css';
+
+/* Reference Tailwind config */
+@config '../tailwind.config.ts';
+
+/* =============================================================================
+ * CUSTOM UTILITIES
+ * ============================================================================= */
+
+@utility caps-normal {
+  font-variant-caps: normal;
+}
+
+@utility small-caps {
+  font-variant-caps: all-small-caps;
+}
+
+@utility squircle {
+  @supports (corner-shape: squircle) {
+    @apply rounded-full!;
+    corner-shape: squircle;
+  }
+
+  @supports not (corner-shape: squircle) {
+    @apply rounded-lg!;
+  }
+}
+
+@utility page {
+  @apply p-2 md:p-4;
+}
+
+/* =============================================================================
+ * BASE ELEMENT STYLES
+ * ============================================================================= */
+
+@layer base {
+  /* Global border color */
+  * {
+    @apply border-border;
+  }
+
+  /* Body defaults */
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+
+  /* Focus visible outline for accessibility */
+  :focus-visible {
+    @apply ring-ring ring-offset-background ring-2 ring-offset-2 outline-none;
+  }
+
+  /* Selection color */
+  ::selection {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  /* Link defaults */
+  a {
+    @apply text-link hover:text-link-hover transition-colors duration-150;
+  }
+
+  /* Heading defaults */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-foreground;
+  }
+
+  /* Code defaults */
+  code {
+    @apply font-mono text-sm;
+  }
+
+  pre {
+    @apply font-mono;
+  }
+
+  /* Input placeholder */
+  ::placeholder {
+    @apply text-muted-foreground opacity-60;
+  }
+
+  /* Disabled state */
+  :disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+}

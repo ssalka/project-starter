@@ -1,0 +1,22 @@
+{
+  "extends": ["../../tsconfig.json"],
+
+  "include": ["src", "./env.d.ts"],
+
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "lib": ["DOM", "ESNext"],
+    "outDir": "build",
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    // FIXME this is a workaround for broken types in the @auth/express package
+    "skipLibCheck": true,
+    "paths": {
+      "@ssalka/common/*": ["../common/src/*"]
+    }
+  },
+  "references": [{ "path": "../common" }]
+}

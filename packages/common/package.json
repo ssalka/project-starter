@@ -1,0 +1,25 @@
+{
+  "name": "@ssalka/common",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "exports": {
+    "./config": "./build/src/config.js",
+    "./env": "./build/src/env.js",
+    "./types/*": "./build/src/types/*.js"
+  },
+  "scripts": {
+    "build": "tsgo -b",
+    "format": "prettier -w src/**/*.ts",
+    "format:check": "prettier src/**/*.ts --check",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint --format codeframe . ",
+    "test": "cross-env NODE_ENV=test vitest",
+    "test:ui": "cross-env NODE_ENV=test vitest --ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^7.1.11"
+  }
+}

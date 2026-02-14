@@ -1,0 +1,34 @@
+name: Code quality checks
+description: 'Run code quality checks (Prettier, ESLint, TypeScript)'
+
+runs:
+  using: composite
+  steps:
+  - name: Formatting
+    shell: bash
+    if: always()
+    run: pnpm format:check
+
+  - name: Linting
+    shell: bash
+    if: always()
+    run: pnpm lint
+
+  - name: Typechecking
+    shell: bash
+    if: always()
+    # NOTE this check doesn't have a pre-defined package.json script because
+    # it should only be used in CI. Locally, use `pnpm typecheck` instead.
+    run: pnpm --parallel typecheck:track
+
+  - name: Check for uncommitted codegen diffs
+    shell: bash
+    if: always()
+    run: |
+      pnpm --filter=client gen:routes
+      if git diff --exit-code --quiet packages/client/src/routeTree.gen.ts; then
+        echo "✅ Router codegen is up to date"
+      else
+        echo "❌ Uncommitted codegen changes found"
+        exit 1
+      fi

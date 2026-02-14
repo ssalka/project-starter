@@ -51,13 +51,14 @@ export async function getRepoMetadata(): Promise<{
 
 export const getPostHogClient = once(() => {
   const { VITE_POSTHOG_API_KEY } = process.env;
-  const posthogTokenNotSet = !VITE_POSTHOG_API_KEY;
-  if (posthogTokenNotSet) {
+  if (!VITE_POSTHOG_API_KEY) {
+    // Occurs in CI if the variable is not set, but shouldn't issue requests without a key
     console.warn('VITE_POSTHOG_API_KEY not found');
+
+    return { capture() {}, init() {} } as unknown as PostHog;
   }
 
-  return new PostHog(VITE_POSTHOG_API_KEY ?? 'phx_token', {
-    disabled: posthogTokenNotSet,
+  return new PostHog(VITE_POSTHOG_API_KEY, {
     host: 'https://us.i.posthog.com',
     flushAt: 1,
     disableGeoip: true,

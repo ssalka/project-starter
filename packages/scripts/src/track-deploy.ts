@@ -11,7 +11,7 @@ async function trackDeploy() {
   const posthog = getPostHogClient();
   const gitMetadata = await getRepoMetadata();
 
-  posthog?.capture({
+  posthog.capture({
     distinctId: 'dev',
     event: 'Deployment Completed',
     properties: {

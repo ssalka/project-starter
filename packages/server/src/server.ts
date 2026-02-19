@@ -81,9 +81,15 @@ export default async function startServer() {
   });
 
   // Setup Auth.js endpoint first, before body parsing
+  const authSecret = process.env.AUTH_SECRET;
+  if (!authSecret) {
+    console.warn('AUTH_SECRET not set, using default secret (not recommended for production)');
+  }
+
   api.use(
     '/auth',
     ExpressAuth({
+      secret: authSecret || 'default',
       providers: authProviders,
       redirectProxyUrl: `${config.server.url}/auth`,
       session: {
@@ -159,7 +165,14 @@ export default async function startServer() {
 
   app.use('/api', api);
 
-  const port = Number(process.env.PORT);
+  let { PORT } = process.env;
+
+  if (!PORT) {
+    console.warn(`PORT not set, defaulting to ${config.server.port}`);
+    PORT = `${config.server.port}`;
+  }
+
+  const port = Number(PORT);
   assert.positiveNumber(port, 'PORT must be an integer');
 
   return new Promise<Express>(resolve => {

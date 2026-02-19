@@ -1,5 +1,6 @@
 import { getSession, type ExpressAuthConfig } from '@auth/express';
 import GitHub from '@auth/express/providers/github';
+import { assert } from '@sindresorhus/is';
 import type { CreateExpressContextOptions } from '@trpc/server/adapters/express';
 import { pick } from 'lodash-es';
 
@@ -17,7 +18,8 @@ export const createContext = async (opts: CreateExpressContextOptions) => {
   // Get the user session from Auth
   let user = null;
   try {
-    const session = await getSession(opts.req, authConfig);
+    const isAuthEnabled = !!process.env.AUTH_SECRET;
+    const session = isAuthEnabled ? await getSession(opts.req, authConfig) : null;
     if (session?.user) {
       user = await User.findOne(pick(session.user, ['name', 'email']));
     }

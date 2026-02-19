@@ -28,8 +28,9 @@ export const isLocalhost = env.HOST.startsWith('localhost:');
 
 /** In CI, `vite preview` is used, which defaults to port 4173. Otherwise, Vite defaults to port 5173. */
 const devClient = isCI ? 'http://localhost:4173' : 'http://localhost:5173';
+const devServerPort = 3001;
 /** The port that the server runs on locally */
-const devServer = 'http://localhost:3001/api';
+const devServer = `http://localhost:${devServerPort}/api`;
 
 // TODO replace with real staging/production URLs when deploying
 const stagingClient = 'https://staging.example.com';
@@ -48,6 +49,9 @@ export const config = {
       .otherwise(() => devClient),
   },
   server: {
+    port: match(env.NODE_ENV)
+      .with('development', () => devServerPort)
+      .otherwise(() => 80),
     url: match({ env: env.NODE_ENV, isTest })
       .with({ isTest: true }, () => devServer)
       .with({ env: 'production' }, () => productionServer)
